@@ -91,17 +91,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     createSquares();
 
-    let wordList = {'mazes': [2, 11, 20, 29, 38],
-                    'can': [43, 51, 59],
-                    'elephant': [57,49,41,33,25,17,9,1],
-                    'search': [21,29,37,45,53,61],
-                    'big': [8,15,22]}
-    let mainBoard = ['t', 'm', 'd', 't', 'e', 'r', 'g', 'b', 'n', 'i', 'a', 'n', 'n', 'q', 'i', 'o', 'a', 'x', 'n', 'z', 's', 'g', 'v', 'h', 'h', 'k', 'i', 'u', 'e', 'w', 'b', 'a', 'p', 'i', 'n', 'q', 'a', 's', 'w', 's', 'e', 'c', 'c', 'j', 'r', 'w', 'z', 'u', 'l', 'a', 'a', 'y', 'c', 'a', 'o', 'k', 'e', 'd', 'n', 'm', 'h', 'k', 'y', 'n']
-    let backBoard = ['d', 'u', 'v', 'p', 'g', 'i', 'o', 'v', 'd', 'l', 'f', 'g', 'd', 'g', 'm', 'p', 'v', 'u', 'b', 'j', 'a', 'f', 'o', 'g', 'c', 'n', 'b', 'g', 'r', 'x', 'p', 'e', 'n', 'x', 'c', 'a', 'i', 'd', 'i', 'x', 'n', 'l', 'q', 'k', 'f', 'd', 'y', 'x', 'g', 'j', 'a', 't', 'k', 't', 'y', 'g', 'w', 'g', 'p', 'p', 'c', 'e', 'm', 'j']
-    let flippedTiles = [35, 3, 43, 59, 36, 24, 51, 2, 4, 41, 6, 50, 2, 51, 17]
-
+    let wordList =     {'aqua': [4, 13, 22, 31],
+     'octopus': [57, 50, 43, 36, 29, 22, 15],
+     'oasis': [36, 37, 38, 39, 40],
+     'rudder': [2, 10, 18, 26, 34, 42],
+     'uprising': [8, 16, 24, 32, 40, 48, 56, 64]}
+    let mainBoard = ['i', 'r', 'h', 'a', 'x', 'f', 'l', 'u', 't', 'u', 'o', 'i', 'q', 'z', 's', 'p', 's', 'd', 'f', 'y', 'a', 'u', 'r', 'r', 'y', 'd', 'w', 'u', 'p', 'z', 'a', 'i', 'k', 'e', 'a', 'o', 'a', 's', 'i', 's', 'c', 'r', 't', 'a', 'k', 'q', 'z', 'i', 'm', 'c', 'w', 'k', 'a', 'l', 'o', 'n', 'o', 'r', 'v', 'j', 'r', 'h', 'z', 'g']
+    let backBoard = ['l', 'y', 'h', 'i', 'v', 'i', 'o', 'n', 'x', 'q', 'u', 'w', 'n', 'n', 'y', 'r', 'd', 'z', 'e', 'l', 'a', 'a', 'x', 'q', 'f', 'j', 'a', 'w', 'o', 'o', 'b', 'g', 'g', 'm', 'p', 'w', 'r', 'j', 't', 'l', 't', 'n', 'f', 'd', 'h', 'z', 'x', 't', 't', 'j', 'r', 't', 's', 'q', 'm', 's', 's', 'n', 'l', 'h', 'o', 'x', 'f', 'h']
+    let flippedTiles = [29, 25, 14, 56, 52, 33, 16, 24, 12, 8, 37, 18]
+    
     boardGen(mainBoard);
     initialFlips(flippedTiles);
+
+    let dailyWords = Object.keys(wordList)
+
+    fillWordList(dailyWords)
 
     const keys = document.querySelectorAll('.keyboard-row button')
 
@@ -138,6 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 for (t = 1; t <= 8; t++) {
                     document.getElementById('text' + t).textContent = ''
                 }
+                for (j = 1; j <= 5; j++) {
+                    if (document.getElementById("word" + j).textContent === guessArr.join('')) {
+                        document.getElementById("word" + j).style.textDecoration = "line-through";
+                    }
+                }
                 currentLetter = 1
                 guessArr = []
                 foundWords += 1
@@ -161,6 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
             guessArr.push(letter)
             currentLetter +=1
             currentSpace.textContent = letter;
+        }
+    }
+
+    function fillWordList(words) {
+        for (i = 0; i < 5; i++) {
+            document.getElementById("word" + String(i + 1)).textContent = words[i]
         }
     }
 
@@ -215,9 +230,12 @@ document.addEventListener("DOMContentLoaded", () => {
     $(document).ready(function() {
         $('.square').click(function flipTile() {  
             let squareId = this.id
-            let boardId = parseInt(squareId) - 1 
+            let boardId = parseInt(squareId) - 1
             boardState[boardId] *= -1
             selSquare = document.getElementById(squareId);
+            if (selSquare.style.backgroundColor==='rgb(83, 141, 78)') {
+                return
+            }
             if (boardState[boardId] < 0) selSquare.textContent = backBoard[boardId];
             if (boardState[boardId] > 0) selSquare.textContent = mainBoard[boardId];
             

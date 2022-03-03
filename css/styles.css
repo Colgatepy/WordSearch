@@ -6,14 +6,46 @@
 html, body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
 }
 
 #container {
     display: flex;
     background-color: black;
     height: 100%;
+    width: 54%;
     align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#body-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#word-container {
+    background-color: black;
+    width: 23%;
+    height: 300px; 
+    align-items: flex-end;
+    padding-top: 60px;
+}
+
+.daily-words {
+    width: 150px;
+    height: 40px; 
+    border: 2px solid rgb(58,58,60);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 30px;
+    color: gainsboro;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    padding: 5px;
+    caret-color: transparent;
 }
 
 #game {
@@ -25,7 +57,19 @@ html, body {
 }
 
 header {
+    display: flex;
     border-bottom: 1px solid rgb(58,58,60);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.header-buttons {
+    display: flex;
+    padding: 5px;
 }
 
 .title {
@@ -35,6 +79,7 @@ header {
     margin: 0.4rem 0 0.4rem 0;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    caret-color: transparent;
 }
 
 .modal {
@@ -56,7 +101,7 @@ header {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
+    width: 450px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
@@ -78,7 +123,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
+    padding: 10px;
     overflow: hidden;
 }
 
@@ -100,6 +145,7 @@ header {
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
+    caret-color: transparent;
 }
 
 #text-container {
@@ -107,23 +153,24 @@ header {
     grid-gap: 5px;
     padding-bottom: 20px;
     box-sizing: border-box;
-    flex-grow: 1;
     overflow: hidden;
 }
 
 .text-entry {
     border-bottom: 2px solid rgb(58,58,60);
-    min-width: 60px;
-    min-height: 60px;
+    width: 60px;
+    height: 80px;
     font-size: 50px;
     font-weight: bold;
     color:rgb(215, 218, 220);
     text-transform: uppercase;
     text-align: center;
+    caret-color: transparent;
 }
 
 #keyboard-container {
     height: 200px;
+    width: 45%;
 }
 
 .keyboard-row {
