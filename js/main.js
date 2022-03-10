@@ -91,14 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     createSquares();
 
-    let wordList =     {'aqua': [4, 13, 22, 31],
-     'octopus': [57, 50, 43, 36, 29, 22, 15],
-     'oasis': [36, 37, 38, 39, 40],
-     'rudder': [2, 10, 18, 26, 34, 42],
-     'uprising': [8, 16, 24, 32, 40, 48, 56, 64]}
-    let mainBoard = ['i', 'r', 'h', 'a', 'x', 'f', 'l', 'u', 't', 'u', 'o', 'i', 'q', 'z', 's', 'p', 's', 'd', 'f', 'y', 'a', 'u', 'r', 'r', 'y', 'd', 'w', 'u', 'p', 'z', 'a', 'i', 'k', 'e', 'a', 'o', 'a', 's', 'i', 's', 'c', 'r', 't', 'a', 'k', 'q', 'z', 'i', 'm', 'c', 'w', 'k', 'a', 'l', 'o', 'n', 'o', 'r', 'v', 'j', 'r', 'h', 'z', 'g']
-    let backBoard = ['l', 'y', 'h', 'i', 'v', 'i', 'o', 'n', 'x', 'q', 'u', 'w', 'n', 'n', 'y', 'r', 'd', 'z', 'e', 'l', 'a', 'a', 'x', 'q', 'f', 'j', 'a', 'w', 'o', 'o', 'b', 'g', 'g', 'm', 'p', 'w', 'r', 'j', 't', 'l', 't', 'n', 'f', 'd', 'h', 'z', 'x', 't', 't', 'j', 'r', 't', 's', 'q', 'm', 's', 's', 'n', 'l', 'h', 'o', 'x', 'f', 'h']
-    let flippedTiles = [29, 25, 14, 56, 52, 33, 16, 24, 12, 8, 37, 18]
+    let wordList =     {'razors': [7, 14, 21, 28, 35, 42],
+	    'hording': [15, 23, 31, 39, 47, 55, 63],
+	    'huge': [16, 24, 32, 40],
+	    'pastrami': [58, 50, 42, 34, 26, 18, 10, 2],
+	    'letters': [9, 17, 25, 33, 41, 49, 57]}
+    let mainBoard = ['e', 'i', 'e', 'e', 'l', 'o', 'r', 'l', 'l', 'm', 'a', 'e', 'i', 'a', 'h', 'h', 'e', 'a', 'u', 'l', 'z', 'n', 'o', 'u', 't', 'r', 'e', 'o', 'a', 'v', 'r', 'g', 't', 't', 'r', 'a', 'a', 'i', 'd', 'e', 'e', 's', 'q', 'h', 'e', 'y', 'i', 'j', 'r', 'a', 'g', 'o', 'f', 'f', 'n', 'a', 's', 'p', 'i', 'a', 'v', 'u', 'g', 'o']
+    let backBoard = ['j', 'z', 'i', 'o', 'd', 'h', 'h', 'q', 'w', 'e', 'o', 'k', 'o', 'i', 'u', 'd', 'd', 'x', 's', 'd', 'k', 'h', 'j', 'j', 'c', 'c', 'u', 'x', 'r', 'f', 'v', 'p', 'k', 'y', 'e', 'o', 'u', 'e', 'a', 'p', 'i', 'i', 'n', 'a', 'h', 'g', 'o', 'c', 'u', 't', 'y', 'u', 'o', 'm', 'w', 'y', 'j', 'e', 'd', 'u', 'h', 'a', 'w', 'u']
+    let flippedTiles = [7, 14, 21, 28, 35, 42, 15, 23, 31, 39, 47, 55, 63, 16, 24, 32, 40, 58, 50, 34, 26, 18, 10, 2, 9, 17, 25, 33, 41, 49, 57]
     
     boardGen(mainBoard);
     initialFlips(flippedTiles);
