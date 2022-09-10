@@ -17,9 +17,9 @@
     </head>
     <body>
         <header>
-            <button id="btnHelp" class="header-buttons">Help</button>
-            <h1 class="title">Word Search</h1>
-            <button id="btnModal" class="header-buttons">Stats</button>
+            <button id="btnHelp" class="header-buttons" onClick="">Help</button>
+            <h1 class="title">Flip Search</h1>
+            <button id="btnStat" class="header-buttons">Stats</button>
         </header>
         <div id="body-container">
             <div id="container">
@@ -87,7 +87,6 @@
             </div>
         </div>
         <div id="statModal" class="modal">
-                    
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h1 id="modalHeader"></h1>
@@ -95,7 +94,14 @@
                 <p id="wordsTried">Words Tried: 0</p>
                 <p id="wordsFound">Words Found: 0</p>
             </div>
-
+        </div>
+        <div id="helpModal" class="modal">    
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1 id="modalHeader">Help</h1>
+                <p>Flip the tiles on the board to uncover the hidden words.</p>
+                <p>Enter them in when found.</p>
+            </div>
         </div>
     </body>
 </html>

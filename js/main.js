@@ -1,18 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    var modal = document.getElementById("statModal");
-    var btn = document.getElementById("btnModal");
+    var modalStat = document.getElementById("statModal");
+    var modalHelp = document.getElementById("helpModal");
+    var btnStat = document.getElementById("btnStat");
+    var btnHelp = document.getElementById("btnHelp");
     var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
-        modal.style.display = "block";
+    var span2 = document.getElementsByClassName("close")[1];
+    
+    btnStat.onclick = function() {
+        modalStat.style.display = "block";
     }
     span.onclick = function() {
-        modal.style.display = "none";
+        modalStat.style.display = "none";
+    }
+    span2.onclick = function() {
+        modalHelp.style.display = "none";
     }
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == modalStat) {
+            modalStat.style.display = "none";
+        } else if (event.target == modalHelp) {
+            modalHelp.style.display = "none";
         }
+    }
+    btnHelp.onclick = function() {
+        modalHelp.style.display = "block";
+    }
+
+    // localStorage.setItem({}) total tiles flipped, avg tiles, 
+
+    if (! localStorage.notFirstVisit) {
+        modalHelp.style.display = "block";
+        localStorage.notFirstVisit = true;
     }
 
     let boardState = {
@@ -91,14 +110,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     createSquares();
 
-    let wordList =     {'razors': [7, 14, 21, 28, 35, 42],
-	    'hording': [15, 23, 31, 39, 47, 55, 63],
-	    'huge': [16, 24, 32, 40],
-	    'pastrami': [58, 50, 42, 34, 26, 18, 10, 2],
-	    'letters': [9, 17, 25, 33, 41, 49, 57]}
-    let mainBoard = ['e', 'i', 'e', 'e', 'l', 'o', 'r', 'l', 'l', 'm', 'a', 'e', 'i', 'a', 'h', 'h', 'e', 'a', 'u', 'l', 'z', 'n', 'o', 'u', 't', 'r', 'e', 'o', 'a', 'v', 'r', 'g', 't', 't', 'r', 'a', 'a', 'i', 'd', 'e', 'e', 's', 'q', 'h', 'e', 'y', 'i', 'j', 'r', 'a', 'g', 'o', 'f', 'f', 'n', 'a', 's', 'p', 'i', 'a', 'v', 'u', 'g', 'o']
-    let backBoard = ['j', 'z', 'i', 'o', 'd', 'h', 'h', 'q', 'w', 'e', 'o', 'k', 'o', 'i', 'u', 'd', 'd', 'x', 's', 'd', 'k', 'h', 'j', 'j', 'c', 'c', 'u', 'x', 'r', 'f', 'v', 'p', 'k', 'y', 'e', 'o', 'u', 'e', 'a', 'p', 'i', 'i', 'n', 'a', 'h', 'g', 'o', 'c', 'u', 't', 'y', 'u', 'o', 'm', 'w', 'y', 'j', 'e', 'd', 'u', 'h', 'a', 'w', 'u']
-    let flippedTiles = [7, 14, 21, 28, 35, 42, 15, 23, 31, 39, 47, 55, 63, 16, 24, 32, 40, 58, 50, 34, 26, 18, 10, 2, 9, 17, 25, 33, 41, 49, 57]
+    dateRotate = new Date();
+    dateRotate = dateRotate.getDay();
+
+    var fullList = [[{'sedans': [50, 43, 36, 29, 22, 15], 'ensued': [42, 35, 28, 21, 14, 7], 'method': [24, 31, 38, 45, 52, 59], 'thumbing': [1, 9, 17, 25, 33, 41, 49, 57], 'toxin': [51, 44, 37, 30, 23]}, ['t', 'a', 'i', 'b', 'p', 'p', 'd', 'z', 'h', 't', 'e', 'v', 'v', 'e', 's', 'u', 'u', 'i', 'a', 'd', 'u', 'n', 'n', 'm', 'm', 'e', 'g', 's', 'a', 'i', 'e', 'e', 'b', 'h', 'n', 'd', 'x', 't', 'i', 'i', 'i', 'e', 'e', 'o', 'h', 'f', 'z', 'j', 'n', 's', 't', 'o', 'y', 'z', 'i', 'q', 'g', 'h', 'd', 'c', 'j', 'u', 'i', 'n'], ['e', 'u', 'j', 'y', 'n', 'o', 'g', 'i', 'i', 'o', 'o', 'n', 'g', 'x', 'i', 'o', 'c', 'e', 't', 'p', 'a', 'a', 'l', 'a', 'q', 'i', 'o', 'r', 'm', 'o', 'i', 'i', 'h', 'q', 't', 'r', 'e', 'l', 'a', 'q', 't', 'g', 'i', 'a', 'i', 'v', 'v', 'y', 'e', 'c', 'w', 'u', 'r', 'o', 'e', 'j', 'l', 'z', 'u', 'o', 'c', 'z', 'e', 'o'], [50, 43, 36, 29, 22, 15, 42, 35, 28, 21, 14, 7, 24, 31, 38, 45, 52, 59, 1, 9, 17, 25, 33, 41]],
+    [{'visible': [7, 6, 5, 4, 3, 2, 1], 'curl': [58, 51, 44, 37], 'flasks': [27, 28, 29, 30, 31, 32], 'shrouded': [16, 15, 14, 13, 12, 11, 10, 9], 'brothers': [24, 23, 22, 21, 20, 19, 18, 17]}, ['e', 'l', 'b', 'i', 's', 'i', 'v', 'e', 'd', 'e', 'd', 'u', 'o', 'r', 'h', 's', 's', 'r', 'e', 'h', 't', 'o', 'r', 'b', 'j', 'h', 'f', 'l', 'a', 's', 'k', 's', 'y', 'e', 'n', 'y', 'l', 't', 'v', 'a', 'a', 'n', 'o', 'r', 'z', 'h', 'r', 'g', 'i', 'b', 'u', 'd', 'e', 'e', 'z', 'x', 'z', 'c', 'u', 'i', 'a', 'o', 'w', 'd'], ['v', 'n', 'i', 'c', 'e', 'p', 'd', 'l', 'a', 'u', 'i', 'm', 'y', 't', 'u', 't', 'v', 'e', 'q', 'm', 'h', 'e', 'c', 'w', 'i', 'k', 'r', 'b', 'z', 'a', 'j', 'c', 'o', 'i', 'i', 'h', 'i', 'a', 'u', 'u', 'g', 'b', 'h', 'o', 'w', 'e', 'u', 'i', 't', 'w', 'q', 'w', 'h', 'j', 'g', 'l', 'i', 'h', 'x', 'u', 'j', 'u', 'f', 'w'], [7, 6, 5, 4, 3, 2, 1, 58, 51, 44, 37, 27, 28, 29, 30, 31, 32, 16, 15, 14, 13]],
+    [{'pasta': [17, 25, 33, 41, 49], 'nugget': [54, 46, 38, 30, 22, 14], 'oiled': [13, 21, 29, 37, 45], 'expert': [15, 23, 31, 39, 47, 55], 'Craft': [62, 53, 44, 35, 26]}, ['v', 'a', 'o', 'b', 'u', 'u', 'x', 'b', 'n', 'f', 'f', 'o', 'o', 't', 'e', 'p', 'p', 'a', 's', 'f', 'i', 'e', 'x', 'u', 'a', 't', 'o', 'd', 'l', 'g', 'p', 's', 's', 'v', 'f', 'a', 'e', 'g', 'e', 'f', 't', 'b', 'z', 'a', 'd', 'u', 'r', 'z', 'a', 'e', 's', 'y', 'r', 'n', 't', 'u', 'n', 'v', 'h', 'a', 'a', 'C', 'e', 'l'], ['a', 'c', 'i', 'r', 'x', 'b', 'e', 'j', 'u', 'r', 'u', 'e', 'x', 'x', 'a', 'u', 'o', 'g', 'i', 'x', 'u', 'k', 'b', 'd', 'u', 'o', 'w', 'g', 'a', 'i', 'b', 'n', 'v', 'y', 'y', 'i', 'w', 'a', 'p', 'u', 'a', 'o', 'o', 'i', 'n', 'b', 'j', 'd', 'u', 'i', 'e', 's', 'w', 'w', 'z', 'r', 'u', 'b', 'r', 'p', 'o', 'i', 'i', 'a'], [17, 25, 33, 41, 49, 54, 46, 38, 30, 22, 14, 13, 21, 29, 37, 45, 15, 23, 31, 39, 47, 55, 62, 53, 44]],
+    [{'avenue': [16, 15, 14, 13, 12, 11], 'tester': [17, 26, 35, 44, 53, 62], 'wrong': [57, 58, 59, 60, 61], 'reckless': [25, 26, 27, 28, 29, 30, 31, 32], 'apex': [37, 46, 55, 64]}, ['y', 'a', 'r', 'e', 'y', 'u', 'j', 'w', 'g', 'v', 'e', 'u', 'n', 'e', 'v', 'a', 't', 'b', 'u', 'w', 'j', 'w', 'e', 'v', 'r', 'e', 'c', 'k', 'l', 'e', 's', 's', 'i', 'd', 's', 'e', 'a', 'm', 'f', 'e', 'w', 'o', 'v', 't', 'o', 'p', 'g', 'x', 'e', 'o', 'h', 'e', 'e', 'o', 'e', 'g', 'w', 'r', 'o', 'n', 'g', 'r', 'i', 'x'], ['z', 'j', 'j', 'w', 's', 'z', 'q', 'y', 'r', 'e', 'u', 'e', 'c', 'q', 'c', 'm', 'n', 'u', 'k', 'i', 'o', 'e', 'z', 'a', 'u', 'v', 's', 'j', 'a', 'o', 'p', 'u', 'a', 'u', 'c', 'w', 'b', 'q', 'a', 'h', 'a', 'd', 'i', 'e', 'u', 'e', 'i', 'o', 'v', 'c', 'n', 'p', 'i', 'x', 'u', 'a', 'v', 'a', 'g', 'e', 'k', 'f', 'd', 'h'], [16, 15, 14, 13, 12, 11, 17, 26, 35, 44, 53, 62, 57, 58, 59, 60, 61, 25, 27, 28, 29, 30, 31, 32, 37]],
+    [{'pilots': [54, 45, 36, 27, 18, 9], 'validity': [63, 55, 47, 39, 31, 23, 15, 7], 'interact': [2, 10, 18, 26, 34, 42, 50, 58], 'riot': [64, 56, 48, 40], 'linens': [46, 38, 30, 22, 14, 6]}, ['j', 'i', 'c', 'r', 'u', 's', 'y', 'b', 's', 'n', 'o', 'g', 'o', 'n', 't', 'z', 't', 't', 't', 'u', 'z', 'e', 'i', 'g', 'z', 'e', 'o', 'l', 'i', 'n', 'd', 'u', 'o', 'r', 'f', 'l', 'w', 'i', 'i', 't', 'k', 'a', 'o', 'j', 'i', 'l', 'l', 'o', 'u', 'c', 'o', 'i', 'g', 'p', 'a', 'i', 'u', 't', 'o', 'k', 'l', 'd', 'v', 'r'], ['c', 'u', 'i', 'k', 'c', 'z', 's', 'p', 'a', 'f', 's', 'j', 'f', 'i', 'q', 'i', 'q', 'p', 'o', 'e', 'p', 'i', 'o', 'q', 'a', 'l', 'x', 'e', 'b', 'x', 'g', 'y', 'k', 'i', 'r', 'h', 'o', 'a', 'r', 'p', 'm', 'w', 'l', 'z', 'a', 'z', 'u', 'u', 'p', 'e', 'l', 'q', 'o', 'e', 'o', 'e', 'i', 's', 'w', 'r', 'j', 'k', 's', 'i'], [54, 45, 36, 27, 18, 9, 63, 55, 47, 39, 31, 23, 15, 7, 2, 10, 26, 34]],
+    [{'emote': [26, 34, 42, 50, 58], 'nanny': [24, 23, 22, 21, 20], 'muckier': [8, 7, 6, 5, 4, 3, 2], 'sidecars': [64, 55, 46, 37, 28, 19, 10, 1], 'gremlin': [63, 54, 45, 36, 27, 18, 9]}, ['s', 'r', 'e', 'i', 'k', 'c', 'u', 'm', 'n', 'r', 'c', 'd', 'q', 'g', 'a', 'p', 'w', 'i', 'a', 'y', 'n', 'n', 'a', 'n', 'p', 'e', 'l', 'c', 'r', 's', 's', 'c', 'z', 'm', 's', 'm', 'e', 'e', 'x', 'y', 'g', 'o', 'w', 'v', 'e', 'd', 'i', 'b', 'a', 't', 'x', 'q', 'x', 'r', 'i', 'u', 'a', 'e', 'u', 'd', 'i', 'd', 'g', 's'], ['g', 'x', 'c', 'e', 'q', 'a', 'o', 'j', 'e', 'c', 'e', 'a', 'u', 'm', 'b', 's', 'u', 'v', 'g', 'd', 'c', 'o', 'i', 'g', 'a', 'c', 'm', 'q', 's', 'a', 'q', 'z', 'e', 'o', 'e', 'v', 'a', 'a', 'a', 'e', 't', 'k', 'b', 'u', 'u', 's', 'c', 'r', 'd', 'e', 't', 'y', 'k', 'w', 'd', 'w', 'u', 'u', 'c', 'i', 'm', 'h', 'o', 'i'], [26, 34, 42, 50, 58, 24, 23, 22, 21, 20, 8, 7, 6, 5, 4, 3, 2, 64, 55, 46, 37, 28, 19, 10, 1]],
+    [{'bookmark': [64, 63, 62, 61, 60, 59, 58, 57], 'bouncing': [41, 42, 43, 44, 45, 46, 47, 48], 'hack': [11, 19, 27, 35], 'glaring': [4, 12, 20, 28, 36, 44, 52], 'troll': [5, 13, 21, 29, 37]}, ['i', 'e', 'k', 'g', 't', 'f', 't', 'd', 'q', 'q', 'h', 'l', 'r', 'k', 'y', 'n', 'a', 'e', 'a', 'a', 'o', 'c', 'e', 'e', 'e', 'a', 'c', 'r', 'l', 'f', 'r', 'w', 'j', 'a', 'k', 'i', 'l', 'u', 'u', 'q', 'b', 'o', 'u', 'n', 'c', 'i', 'n', 'g', 'u', 'u', 'w', 'g', 'h', 'e', 'l', 'c', 'k', 'r', 'a', 'm', 'k', 'o', 'o', 'b'], ['r', 'p', 'a', 'o', 'e', 'c', 'n', 'u', 'c', 't', 'u', 'e', 'h', 'g', 'i', 'a', 'k', 'c', 'w', 'h', 'w', 'a', 'k', 'o', 'i', 'c', 'l', 'o', 'b', 'a', 's', 'u', 'a', 'k', 'i', 'p', 'o', 'x', 'g', 'p', 's', 'm', 'z', 'x', 'g', 'o', 'y', 'o', 'm', 'j', 'q', 'a', 'i', 'j', 'x', 'r', 'd', 'a', 'm', 'l', 'e', 'k', 'u', 'i'], [64, 63, 62, 61, 60, 59, 58, 57, 41, 42, 43, 44, 45, 46, 47, 48, 11, 19, 27]]]
+
+    let wordList = fullList[dateRotate][0]
+    let mainBoard = fullList[dateRotate][1]
+    let backBoard = fullList[dateRotate][2]
+    let flippedTiles = fullList[dateRotate][3]
     
     boardGen(mainBoard);
     initialFlips(flippedTiles);
@@ -132,8 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('wordsTried').textContent = 'Words Tried: ' + String(attemptedWords);
             wordFound = checkEntry(guessArr);
             if (wordFound == true) {
-                // add to visible wordlist?
-                // highlight & lock cells?
+                // add to visible wordlist? Cross off list
+                // highlight & lock cells
                 wordCoord = wordList[guessArr.join('')]
                 for (i = 1; i <= wordCoord.length; i++) {
                     square = document.getElementById(String(wordCoord[i-1]))
@@ -153,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('wordsFound').textContent = 'Words Found: ' + String(foundWords);
                 if (foundWords == 5) {
                     document.getElementById("modalHeader").textContent = "You Won!";
-                    modal.style.display="block";
+                    modalStat.style.display="block";
                 }
             } else {
                 for (t = 1; t <= 8; t++) {
