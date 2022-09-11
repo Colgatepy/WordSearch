@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ColgateJS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"/>
+        <title>Flip Search</title>
 
         <script src="js/main.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -15,12 +15,15 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />
     </head>
-    <body>
-        <header>
-            <button id="btnHelp" class="header-buttons" onClick="">Help</button>
-            <h1 class="title">Flip Search</h1>
+    <header>
+        <button id="btnHelp" class="header-buttons">Help</button>
+        <h1 class="title">Flip Search</h1>
+        <div id="btnContainer">
+            <button id="btnLegend" class="header-buttons">Word List</button>
             <button id="btnStat" class="header-buttons">Stats</button>
-        </header>
+        </div>
+    </header>
+    <body>
         <div id="body-container">
             <div id="container">
 
@@ -78,13 +81,13 @@
                     </div>
                 </div>
             </div>
-            <div id="word-container">
-                <div id="word1" class="daily-words"></div>
-                <div id="word2" class="daily-words"></div>
-                <div id="word3" class="daily-words"></div>
-                <div id="word4" class="daily-words"></div>
-                <div id="word5" class="daily-words"></div>
-            </div>
+        </div>
+        <div id="word-container" class="modal-legend">
+            <div id="word1" class="daily-words"></div>
+            <div id="word2" class="daily-words"></div>
+            <div id="word3" class="daily-words"></div>
+            <div id="word4" class="daily-words"></div>
+            <div id="word5" class="daily-words"></div>
         </div>
         <div id="statModal" class="modal">
             <div class="modal-content">

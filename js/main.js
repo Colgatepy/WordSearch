@@ -2,11 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     var modalStat = document.getElementById("statModal");
     var modalHelp = document.getElementById("helpModal");
+    var modalLegend = document.getElementById("word-container");
     var btnStat = document.getElementById("btnStat");
     var btnHelp = document.getElementById("btnHelp");
+    var btnLegend = document.getElementById("btnLegend");
     var span = document.getElementsByClassName("close")[0];
     var span2 = document.getElementsByClassName("close")[1];
-    
+
     btnStat.onclick = function() {
         modalStat.style.display = "block";
     }
@@ -26,12 +28,30 @@ document.addEventListener("DOMContentLoaded", () => {
     btnHelp.onclick = function() {
         modalHelp.style.display = "block";
     }
+    btnLegend.onclick = function() {
+        if (modalLegend.style.display == "none") {
+            modalLegend.style.display = "block"
+        } else {
+            modalLegend.style.display = "none";
+        }
+    }
 
-    // localStorage.setItem({}) total tiles flipped, avg tiles, 
+    function setStats(flipped, targetflips, attempts, words, games) {
+            localStorage.setItem("flipped", flipped);
+            localStorage.setItem("targetflips", targetflips);
+            localStorage.setItem("attempts", attempts);
+            localStorage.setItem("words", words);
+            localStorage.setItem("games", games);
+    }
 
     if (! localStorage.notFirstVisit) {
         modalHelp.style.display = "block";
         localStorage.notFirstVisit = true;
+        localStorage.setItem("flipped", 0);
+        localStorage.setItem("targetflips", 0);
+        localStorage.setItem("attempts", 0);
+        localStorage.setItem("words", 0);
+        localStorage.setItem("games", 0);
     }
 
     let boardState = {
@@ -158,8 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('wordsTried').textContent = 'Words Tried: ' + String(attemptedWords);
             wordFound = checkEntry(guessArr);
             if (wordFound == true) {
-                // add to visible wordlist? Cross off list
-                // highlight & lock cells
                 wordCoord = wordList[guessArr.join('')]
                 for (i = 1; i <= wordCoord.length; i++) {
                     square = document.getElementById(String(wordCoord[i-1]))
@@ -179,6 +197,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('wordsFound').textContent = 'Words Found: ' + String(foundWords);
                 if (foundWords == 5) {
                     document.getElementById("modalHeader").textContent = "You Won!";
+                    
+                    let accuracy = flippedCount / flippedTiles.length
+                    // save board state / game completion
+                    setStats(flippedCount + localStorage.getItem("flipped"), flippedTiles.length + localStorage.getItem("targetflips"), attemptedWords + localStorage.getItem("attempts"), localStorage.getItem("words") + 5, localStorage.getItem("games") + 1)
+                    
                     modalStat.style.display="block";
                 }
             } else {
