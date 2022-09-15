@@ -1,3 +1,36 @@
+@media only screen and (max-width: 600px) {
+    #container { /* board, keyboard and word entry*/
+        height: 100%;
+        width: 100%;
+    }
+    
+    #board-container {
+        padding: 5px;
+    }
+    
+    #board {
+        grid-gap: 2.5px;
+        padding: 5px;
+    }
+    
+    .square {
+        min-width: 30px;
+        min-height: 30px;
+        font-size: 2.5rem;
+    }
+    
+    .text-entry {
+        width: 30px;
+        height: 50px;
+        font-size: 25px;
+    }
+    
+    #keyboard-container {
+        height: 200px;
+        width: 300px;
+    }
+}
+
 * { 
     margin: 0;
     padding: 0;
@@ -106,7 +139,7 @@ header { /* contains buttons & title */
 
 #keyboard-container {
     height: 200px;
-    width: 45%;
+    width: 600px;
 }
 
 .keyboard-row {

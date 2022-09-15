@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dailyStats.words.length > 0) {
             dailyStats.words.forEach((element) => { // strikethrough on previously found words
                 for (j = 1; j <= 5; j++) {
-                    console.log(`word list: ${document.getElementById("word" + j).textContent}, found word: ${element}`)
                     if (document.getElementById("word" + j).textContent === element) {
                         document.getElementById("word" + j).style.textDecoration = "line-through";
                     }
@@ -338,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('totalGames').textContent = 'Games played: ' + String(localStorage.games * 1);
         document.getElementById('totalFlips').textContent = 'Flips: ' + String(localStorage.flipped) + ' out of ' + String(localStorage.targetflips) + ' necessary flips';
         document.getElementById('totalAttempts').textContent = 'Word attempts: ' + String(localStorage.attempts);
-        document.getElementById('totalFound').textContent = 'Words found: ' + String(localStorage.words * 1) + ' out of ' + String(localStorage.games * 5);
+        document.getElementById('totalFound').textContent = 'Words found: ' + String(parseInt(localStorage.words) * 1) + ' out of ' + String(parseInt(localStorage.games) * 5);
     }
 
     $(document).ready(function() {
