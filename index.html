@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no"/>
         <title>Flip Search</title>
 
         <script src="js/main.js"></script>
@@ -93,17 +93,29 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h1 id="modalHeader"></h1>
+                <br>
                 <p id="countFlips">Tiles Flipped: 0</p>
                 <p id="wordsTried">Words Tried: 0</p>
                 <p id="wordsFound">Words Found: 0</p>
+                <br>
+                <h1 id="modalHeader">Life Time Stats</h1>
+                <br>
+                <p id="totalGames">Games Played: 0</p>
+                <p id="totalFlips">Flips: 0 out of 0 necessary flips</p>
+                <p id="totalAttempts">Word attempts: 0</p>
+                <p id="totalFound">Words found: 0 out of 0</p>
             </div>
         </div>
         <div id="helpModal" class="modal">    
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h1 id="modalHeader">Help</h1>
+                <br>
                 <p>Flip the tiles on the board to uncover the hidden words.</p>
                 <p>Enter them in when found.</p>
+                <br>
+                <p>Found words and flipped tiles will be saved until the puzzle is reset the next day.</p>
+
             </div>
         </div>
     </body>
