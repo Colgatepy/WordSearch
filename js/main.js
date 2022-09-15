@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('totalGames').textContent = 'Games played: ' + String(localStorage.games * 1);
         document.getElementById('totalFlips').textContent = 'Flips: ' + String(localStorage.flipped) + ' out of ' + String(localStorage.targetflips) + ' necessary flips';
         document.getElementById('totalAttempts').textContent = 'Word attempts: ' + String(localStorage.attempts);
-        document.getElementById('totalFound').textContent = 'Words found: ' + String(localStorage.words * 1) + ' out of ' + String(localStorage.games * 5);
+        document.getElementById('totalFound').textContent = 'Words found: ' + String(parseInt(localStorage.words) * 1) + ' out of ' + String(parseInt(localStorage.games) * 5);
     }
 
     $(document).ready(function() {
