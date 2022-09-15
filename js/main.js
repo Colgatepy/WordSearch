@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dailyStats.words.length > 0) {
             dailyStats.words.forEach((element) => { // strikethrough on previously found words
                 for (j = 1; j <= 5; j++) {
-                    console.log(`word list: ${document.getElementById("word" + j).textContent}, found word: ${element}`)
                     if (document.getElementById("word" + j).textContent === element) {
                         document.getElementById("word" + j).style.textDecoration = "line-through";
                     }
